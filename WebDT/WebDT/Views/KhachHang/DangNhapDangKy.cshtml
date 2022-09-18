@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "DangNhapDangKy";
+    Layout = "~/Views/Shared/_LayoutDT.cshtml";
+}
+
+<div class="container form__dangNhapDangKy section">
+    <div class="row">
+        <div class="col">
+            <h5>Đăng nhập</h5>
+            @if (@ViewData["Loi"] != null)
+            {
+                <br />
+                <h5>@ViewData["Loi"]</h5>
+            }
+            <form class="form-group" action="@Url.Action("DangNhap","KhachHang")" method="post">
+                <input class="form-control input__dangNhap" type="text" placeholder="Tên tài khoản" name="taikhoan" />
+                <input class="form-control input__dangNhap" type="password" placeholder="Mật khẩu" name="matkhau" />
+                <button class="btn btn-danger button__dangNhap" type="submit">Đăng nhập</button>
+            </form>
+        </div>
+        <div class="col-1">
+            <div class="col__or"><=></div>
+        </div>
+        <div class="col">
+            <h5>Đăng ký</h5>
+            <form class="form-group" action="@Url.Action("DangKy","KhachHang")" method="post">
+                <input class="form-control input__dangKy" type="text" placeholder="Họ và tên" name="hoten" />
+                <input class="form-control input__dangKy" type="date" placeholder="Ngày sinh" name="ngaysinh" />
+                <span class="input__dangKy">Giới tính</span>
+                <input type="radio" value="nam" name="gioitinh" id="nam" />
+                <label for="nam">Nam</label>
+                <input type="radio" value="nu" name="gioitinh" id="nu" />
+                <label for="nu">Nữ</label>
+                <input class="form-control input__dangKy" type="text" placeholder="Số điện thoại" name="dienthoai" />
+                <input class="form-control input__dangKy" type="text" placeholder="Email" name="email" />
+                <input class="form-control input__dangKy" type="text" placeholder="Địa chỉ" name="diachi" />
+                <input class="form-control input__dangKy" type="text" placeholder="Tên đăng nhập" name="taikhoan" />
+                <input class="form-control input__dangKy" type="password" placeholder="Mật khẩu" name="matkhau" />
+                <button id="dangky" type="submit" class="btn btn-danger button__dangKy">Đăng ký</button>
+            </form>
+        </div>
+    </div>
+</div>
+

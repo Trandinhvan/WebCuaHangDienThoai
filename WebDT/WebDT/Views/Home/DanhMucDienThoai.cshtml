@@ -1,0 +1,9 @@
+﻿@using WebDT.Models;
+@model List<NHASANXUAT>
+@foreach (var nsx in Model)
+{
+    <a href="@Url.Action("HienThiDienThoaiTheoNSX", "Home", new { maLoai = @nsx.MANSX})"><img class="img__nsx" src="@Url.Content("~/hinh/" + @nsx.LOGO)" /></a>
+}
+
+
+

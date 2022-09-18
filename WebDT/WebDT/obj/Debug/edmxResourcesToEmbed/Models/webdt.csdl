@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WEBDTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="LOAISP">
+    <Key>
+      <PropertyRef Name="MALOAI" />
+    </Key>
+    <Property Name="MALOAI" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TENLOAI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SANPHAMs" Relationship="WEBDTModel.FK_SP_LOAI" FromRole="LOAISP" ToRole="SANPHAM" />
+  </EntityType>
+  <EntityType Name="NHASANXUAT">
+    <Key>
+      <PropertyRef Name="MANSX" />
+    </Key>
+    <Property Name="MANSX" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TENNSX" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LOGO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SANPHAMs" Relationship="WEBDTModel.FK_SP_NSX" FromRole="NHASANXUAT" ToRole="SANPHAM" />
+  </EntityType>
+  <EntityType Name="SANPHAM">
+    <Key>
+      <PropertyRef Name="MASANPHAM" />
+    </Key>
+    <Property Name="MASANPHAM" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TENSANPHAM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HINHANH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CHITIET" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="SOLUONGTON" Type="Int32" />
+    <Property Name="GIABAN" Type="Int32" />
+    <Property Name="NGAYCAPNHAT" Type="DateTime" Precision="3" />
+    <Property Name="MALOAI" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="MANSX" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="LOAISP" Relationship="WEBDTModel.FK_SP_LOAI" FromRole="SANPHAM" ToRole="LOAISP" />
+    <NavigationProperty Name="NHASANXUAT" Relationship="WEBDTModel.FK_SP_NSX" FromRole="SANPHAM" ToRole="NHASANXUAT" />
+    <NavigationProperty Name="CHITIETDONHANGs" Relationship="WEBDTModel.FK_CTDH_SP" FromRole="SANPHAM" ToRole="CHITIETDONHANG" />
+  </EntityType>
+  <EntityContainer Name="WEBDTEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="LOAISPs" EntityType="Self.LOAISP" />
+    <EntitySet Name="NHASANXUATs" EntityType="Self.NHASANXUAT" />
+    <EntitySet Name="SANPHAMs" EntityType="Self.SANPHAM" />
+    <AssociationSet Name="FK_SP_LOAI" Association="WEBDTModel.FK_SP_LOAI">
+      <End Role="LOAISP" EntitySet="LOAISPs" />
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SP_NSX" Association="WEBDTModel.FK_SP_NSX">
+      <End Role="NHASANXUAT" EntitySet="NHASANXUATs" />
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+    </AssociationSet>
+    <EntitySet Name="CHITIETDONHANGs" EntityType="WEBDTModel.CHITIETDONHANG" />
+    <EntitySet Name="DONHANGs" EntityType="WEBDTModel.DONHANG" />
+    <EntitySet Name="KHACHHANGs" EntityType="WEBDTModel.KHACHHANG" />
+    <AssociationSet Name="FK_CTDH_MD" Association="WEBDTModel.FK_CTDH_MD">
+      <End Role="DONHANG" EntitySet="DONHANGs" />
+      <End Role="CHITIETDONHANG" EntitySet="CHITIETDONHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTDH_SP" Association="WEBDTModel.FK_CTDH_SP">
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+      <End Role="CHITIETDONHANG" EntitySet="CHITIETDONHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DH_KH" Association="WEBDTModel.FK_DH_KH">
+      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+      <End Role="DONHANG" EntitySet="DONHANGs" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_SP_LOAI">
+    <End Type="WEBDTModel.LOAISP" Role="LOAISP" Multiplicity="0..1" />
+    <End Type="WEBDTModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAISP">
+        <PropertyRef Name="MALOAI" />
+      </Principal>
+      <Dependent Role="SANPHAM">
+        <PropertyRef Name="MALOAI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SP_NSX">
+    <End Type="WEBDTModel.NHASANXUAT" Role="NHASANXUAT" Multiplicity="0..1" />
+    <End Type="WEBDTModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHASANXUAT">
+        <PropertyRef Name="MANSX" />
+      </Principal>
+      <Dependent Role="SANPHAM">
+        <PropertyRef Name="MANSX" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CHITIETDONHANG">
+    <Key>
+      <PropertyRef Name="MADON" />
+      <PropertyRef Name="MASP" />
+    </Key>
+    <Property Name="MADON" Type="Int32" Nullable="false" />
+    <Property Name="MASP" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="SOLUONG" Type="Int32" />
+    <Property Name="DONGIA" Type="Int32" />
+    <NavigationProperty Name="DONHANG" Relationship="WEBDTModel.FK_CTDH_MD" FromRole="CHITIETDONHANG" ToRole="DONHANG" />
+    <NavigationProperty Name="SANPHAM" Relationship="WEBDTModel.FK_CTDH_SP" FromRole="CHITIETDONHANG" ToRole="SANPHAM" />
+  </EntityType>
+  <EntityType Name="DONHANG">
+    <Key>
+      <PropertyRef Name="MADONHANG" />
+    </Key>
+    <Property Name="MADONHANG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NGAYGIAO" Type="DateTime" Precision="3" />
+    <Property Name="NGAYDAT" Type="DateTime" Precision="3" />
+    <Property Name="DATHANHTOAN" Type="Boolean" />
+    <Property Name="TINHTRANGGIAOHANG" Type="Boolean" />
+    <Property Name="MAKH" Type="Int32" />
+    <NavigationProperty Name="CHITIETDONHANGs" Relationship="WEBDTModel.FK_CTDH_MD" FromRole="DONHANG" ToRole="CHITIETDONHANG" />
+    <NavigationProperty Name="KHACHHANG" Relationship="WEBDTModel.FK_DH_KH" FromRole="DONHANG" ToRole="KHACHHANG" />
+  </EntityType>
+  <EntityType Name="KHACHHANG">
+    <Key>
+      <PropertyRef Name="MAKHACH" />
+    </Key>
+    <Property Name="MAKHACH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TENKHACH" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="NGAYSINH" Type="DateTime" Precision="3" />
+    <Property Name="GIOITINH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="DIENTHOAI" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+    <Property Name="TAIKHOAN" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DIACHI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DONHANGs" Relationship="WEBDTModel.FK_DH_KH" FromRole="KHACHHANG" ToRole="DONHANG" />
+    <Property Name="MATKHAU" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_CTDH_MD">
+    <End Type="WEBDTModel.DONHANG" Role="DONHANG" Multiplicity="1" />
+    <End Type="WEBDTModel.CHITIETDONHANG" Role="CHITIETDONHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONHANG">
+        <PropertyRef Name="MADONHANG" />
+      </Principal>
+      <Dependent Role="CHITIETDONHANG">
+        <PropertyRef Name="MADON" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CTDH_SP">
+    <End Type="WEBDTModel.SANPHAM" Role="SANPHAM" Multiplicity="1" />
+    <End Type="WEBDTModel.CHITIETDONHANG" Role="CHITIETDONHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAM">
+        <PropertyRef Name="MASANPHAM" />
+      </Principal>
+      <Dependent Role="CHITIETDONHANG">
+        <PropertyRef Name="MASP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DH_KH">
+    <End Type="WEBDTModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
+    <End Type="WEBDTModel.DONHANG" Role="DONHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACHHANG">
+        <PropertyRef Name="MAKHACH" />
+      </Principal>
+      <Dependent Role="DONHANG">
+        <PropertyRef Name="MAKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

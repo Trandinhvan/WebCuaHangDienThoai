@@ -1,0 +1,66 @@
+﻿@using WebDT.Models;
+@model List<GioHang>
+@{
+    ViewBag.Title = "XemGioHang";
+    Layout = "~/Views/Shared/_LayoutDT.cshtml";
+}
+<div class="container section">
+    @if (Model != null)
+    {
+        <div class="table-responsive cart_info">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Sản phẩm</th>
+                        <th scope="col">Giá bán</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Tổng đơn giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var sp in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@Url.Content("~/hinh/"+ sp.HinhAnh)" style="width:120px" />
+                                @sp.TenSanPham
+                            </td>
+                            <td style="padding-top:58px">@sp.Gia.Value.ToString("#,##0.###") VND</td>
+                            <td>
+                                <a class="btn btn-default btn__quanlity" style="display:block;font-size:25px;padding:0;font-weight:bold" href="@Url.Action("ThemGioHang", "GioHang", new { ma = @sp.MaSanPham})">+</a>
+                                <span style="font-size:20px">
+                                    @sp.SoLuong
+                                </span>
+                                <a class="btn btn-default btn__quanlity" style="display:block;font-size:25px;padding:0;font-weight:bold" href="@Url.Action("GiamGioHang", "GioHang", new { ma = @sp.MaSanPham})">-</a>
+                            </td>
+                            <td style="padding-top:58px">@sp.ThanhTien.Value.ToString("#,##0.###") VND</td>
+                            <td>
+                                <a class="btn btn-default btn__remove-cart" href="@Url.Action("XoaMatHang", "GioHang", new { ma = @sp.MaSanPham})"><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+
+                    }
+
+                    <tr>
+                        <td>
+                            <h2>Số lượng: <a style="color: red">@ViewBag.tongSL</a></h2>
+                        </td>
+                        <td>
+                            <h2>Tổng số tiền: <a style="color: red">@String.Format("{0:0,0}", @ViewBag.tongT)</a> VNĐ</h2>
+                        </td>
+                    </tr>
+
+                    
+
+                </tbody>
+            </table>
+            <div>
+                <a href="@Url.Action("XoaGioHang", "GioHang")" class="btn btn-default add-to-cart">Xóa Giỏ Hàng</a>
+                <a href="@Url.Action("Index", "Home")" class="btn btn-default add-to-cart">Tiếp Tục Mua Hàng</a>
+                <a href="@Url.Action("DatHang", "GioHang")" class="btn btn-default add-to-cart">Đặt Hàng</a>
+            </div>
+        </div>
+    }
+</div>
+
+

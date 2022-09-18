@@ -1,0 +1,206 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.section{
+    padding-top:70px;
+}
+
+header{
+    background-color: rgb(160, 29, 9);
+}
+header .header__top img{
+    margin: 0 auto;
+    display: block;
+}
+header .header__bottom{
+    background-color:#ffd400;
+}
+.container-fluid{
+    padding: 0;
+}
+.header__search-content{
+    padding: 0;
+}
+.header__search-content input{
+    padding:5px 50px;
+    border-radius: 5px;
+    border: none;
+    outline:none;
+}
+.header__search-content button{
+    background-color:#fff;
+    border:none;
+    padding:5px 10px;
+    margin-left:-8px;
+}
+.header__search-content .cart{
+    padding:0 10px;
+    margin:15px 0 0 15px;
+    height:35px;
+    font-size:15px;
+    border-radius:5px;
+    background-color: rgba(255,172,10,.6);
+    color:#000;
+    transition: .5s;
+}
+.header__search-content .cart:hover{
+    background-color:#fff;
+}
+/*.header__search-content button:nth-of-type(2){
+    background-color:rgba(255,172,10,.6);
+    margin-left:30px;
+}*/
+
+.link__dangNhap-dangKy{
+    color:#000;
+    text-decoration:none;
+    margin:16px 0 0 16px;
+}
+.link__dangNhap-dangKy:hover{
+    text-decoration:none;
+    color:#fff;
+}
+
+.welcome__khach{
+    margin: 20px 20px 0 20px;
+    font-size:15px;
+}
+
+.link__dangXuat{
+    color:#000;
+    margin-top:15px;
+}
+.link__dangXuat:hover{
+    text-decoration:none;
+    color:#fff;
+}
+
+.header_nav{
+    background-color:#ffd400;
+}
+.header_nav .navbar .navbar-nav .nav-item{
+    padding: 0 20px;
+}
+.header_nav .navbar .navbar-nav .nav-item .nav-link{
+    color:#000;
+}
+.header_nav .navbar .navbar-nav .nav-item .nav-link img{
+    width: 20px;
+    height: 20px;
+}
+
+/*item*/
+.item__star{
+    color:#ffd400;
+    font-size:13px;
+    display: inline-block;
+}
+.card img{
+    margin-top:25px;
+    transition: all .5s;
+}
+.card img:hover{
+    transform:translateY(-20px);
+}
+.card .card-body .card-title{
+    text-align:center;
+    letter-spacing:1px;
+    font-size:1.15rem;
+}
+.card .card-body .card-text{
+    font-size:15px;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+.card .card-body span{
+    font-size: 15px;
+    font-weight:700;
+}
+
+.card{
+    position:relative;
+}
+/*.card:hover .overlay{
+    opacity:1;
+}*/
+/*.overlay{
+    background-color: rgba(0,0,0,.05);
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    opacity:0;
+    transition:all .5s;
+}*/
+
+.img__nsx{
+    border-radius:30px;
+    border: 1px solid #ccc;
+    width:100px;
+    margin-bottom:20px;
+}
+
+.link__gioHang{
+    color: #000;
+    background-color: rgba(255,172,10,.6);
+    height: 35px;
+    margin: 14px 0 0 20px;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+.link__gioHang:hover{
+    background-color:#fff;
+    color:#000;
+    text-decoration:none;
+}
+.btn__quanlity:focus{
+    outline:none;
+    box-shadow:none;
+}
+.btn__quanlity:hover{
+    color:#ffd400;
+}
+.btn__remove-cart{
+    font-size:25px;
+    margin-top:25px;
+}
+.btn__remove-cart:hover{
+    color:red;
+}
+
+
+/*form*/
+.form__dangNhapDangKy form{
+    text-align:center;
+    width:70%;
+    margin:0 auto;
+}
+.input__dangNhap, .input__dangKy{
+    margin:10px 0 10px;
+    transition:.5s;
+}
+.form__dangNhapDangKy h5{
+    text-align:center;
+    color:#ffd400;
+}
+.form__dangNhapDangKy .col__or{
+    width:50px;
+    height:50px;
+    background-color:#ffd400;
+    color:#000;
+    border-radius:50%;
+    text-align:center;
+    line-height:50px;
+}
+.button__dangNhap, .button__dangKy{
+    background-color:#ffd400;
+    border:none;
+}
+.input__dangNhap:focus, .input__dangKy:focus{
+    outline:none;
+    box-shadow:none;
+    background-color:#ccc;
+}

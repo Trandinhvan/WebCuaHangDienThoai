@@ -1,0 +1,43 @@
+﻿@using WebDT.Models;
+@model List<SANPHAM>
+@{
+    ViewBag.Title = "DanhSachDienThoai";
+    Layout = "~/Views/Shared/_LayoutDT.cshtml";
+}
+
+<div class="container">
+
+    @Html.Action("DanhMucDienThoai", "Home")
+</div>
+
+<div class="container section">
+    @if (Model.Any() && Model != null)
+    {
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-3">
+                    <div class="card" style="margin-top:5px">
+                        <img src="@Url.Content("~/hinh/" + item.HINHANH)" class=" card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-size:1.05rem">@item.TENSANPHAM</h5>
+                            <p class="card-text">@item.CHITIET.Substring(0, 30)...</p>
+                            <div class="item__star">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half"></i>
+                            </div>
+                            <span>@item.GIABAN.Value.ToString("#,##0.###") VND</span>
+                            <a href="@Url.Action("ThemGioHang", "GioHang", new { ma = @item.MASANPHAM })" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Chọn mua</a>
+                        </div>
+                        @*<div class="overlay"></div>*@
+                    </div>
+                </div>
+            }
+        </div>
+
+    }
+</div>
+
